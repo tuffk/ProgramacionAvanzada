@@ -1,6 +1,3 @@
-/*Rodrigo Solana Chao
-ITESM CSF Ejercicio2.
-Programación Avanzada*/
 #include <stdio.h>
 #include<stdlib.h>
 #define M 2 //Numero de personas

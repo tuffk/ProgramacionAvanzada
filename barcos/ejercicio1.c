@@ -1,6 +1,3 @@
-/*Rodrigo Solana Chao
-ITESM CSF Ejercicio1.
-Programación Avanzada*/
 #include <stdio.h>
 #include<stdlib.h>
 #define N 5
