@@ -44,11 +44,11 @@ typedef struct{
 
 typedef void(*func)(Persona*);
 
-void addNomina(Persona*);
-void delNomina(Persona, Persona*);
-void construir(Persona, Modelo*);
-void printByDate(Modelo*,int);
-void printrh(int,int,Persona,Modelo*);
+void addNomina(Persona*,int);
+void delNomina(Persona*,int);
+void construir(Persona, Modelo*,int);
+void printByDate(Modelo*,int,int);
+void printrh(int,int,Persona,Modelo*,int);
 int tampP(Persona*);
 int tamM(Modelo*);
 
@@ -56,8 +56,10 @@ int main(){
     
     Persona* RH = (Persona*)malloc(N*sizeof(Persona));
     Modelo* modelos = (Modelo*)malloc(M*sizeof(Modelo));
-    modelos=NULL;
+
     int opcion=-1;
+    int zrh=0;
+    int zmod=0;
     while(opcion !=0){
     printf("que quieres\nagregar empleado -1\neliminar empleado - 2\nhacer un modelo -3\nver por fecha -4\nver nomina -5\n salir - 0 \n");
     scanf("%d",&opcion);
@@ -65,10 +67,15 @@ int main(){
         {
             case 1:
             printf("agregando");
-                addNomina(RH);
+                addNomina(RH,zrh);
+                zrh++;
                 printf("agregado");
             break;
-            default: printf("error"); break;
+            case 2:
+                delNomina(RH,zrh);
+                zrh--;
+            break; 
+            default: printf("error\n"); break;
         }
     }
     free(RH);
@@ -100,24 +107,60 @@ int tamM(Modelo*lista){
     return t;
 }
 
-void addNomina(Persona* lista){
-    int tam = tampP(lista);
-    if(tam>N)
-    {
-        lista = (Persona*)realloc(lista,(N+10)*sizeof(Persona));
-    }
-    char* nom=(char*)malloc(30*sizeof(char));
-    printf("dame nombre");
-    scanf("%s",&nom);
-    Persona* temp=(Persona*)malloc(sizeof(Persona));
+void addNomina(Persona* p,int c){
 
-    (temp)->nomina =1;
-    (temp)->nombre =(char*)malloc(30*sizeof(char));
-    (temp)->nombre =nom;
-    (temp)->apellido = "perez";
-    (temp)->ingreso = 20000103;
-    (temp)->salario = 500;
-    (temp)->nacimiento = 1984023;
-    (temp)->puesto = "puesto";
-    *(lista+tam)=*temp;
+    if(c>N)
+    {
+        p = (Persona*)realloc(p,(N+10)*sizeof(Persona));
+    }
+    printf("Dame el numero de nomina: ");
+	scanf("%d",(&(p+c)->nomina));
+	(p+c)->nombre = malloc(sizeof(char)*10); 
+	//printf("Dame el nombre: ");
+	//scanf("%s",(p+c)->nombre);
+	(p+c)->nombre = "hola";
+	(p+c)->apellido = malloc(sizeof(char)*10);
+	//printf("Dame el apellido: ");
+	//scanf("%s",(p+c)->apellido);	
+    (p+c)->apellido="adios";
+	
+	//printf("Dame la fecha nacimiento en este formato ejemplo 19490103 :  ");
+	//scanf("%d",(&(p+c)->nacimiento));  
+(p+c)->nacimiento=1;
+	//printf("Dame la fecha de Ingreso en este formato ejemplo 19991111 :  ");
+	//scanf("%d",(&(p+c)->ingreso));
+	(p+c)->ingreso=1;
+
+	//printf("Dame el salario: ");
+	//scanf("%d",(&(p+c)->salario));
+	(p+c)->salario=1;
+	(p+c)->puesto = malloc(sizeof(char)*10);
+	//printf("Dame el puesto: ");
+	//scanf("%s",(p+c)->puesto);	
+	(p+c)->puesto="violador";
+}
+
+void delNomina(Persona* lista,int c)
+{
+    printf("a quien quieres correr?(numero de nomina)\n");
+    int id=0;
+    scanf("%d",&id);
+    Persona*aux;
+    Persona*aux2;
+    aux2 =(lista+c);
+    aux = lista;
+    while((aux) !="\0")
+    {
+        aux++;
+        if((aux)->nomina ==id)
+        {
+            //free(aux);
+            aux=aux2;
+            printf("corrido exitosamente");
+            return;
+        }
+        
+    }
+    
+    printf("no encontre a quien correr");
 }
