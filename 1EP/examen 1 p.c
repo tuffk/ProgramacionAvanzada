@@ -37,7 +37,7 @@ typedef struct{
 typedef struct{
     int fecha;
     Nave* nave;
-    Torre torre;
+    Torre* torre;
     Nave* edificio;
     Persona * constructor;
 }Modelo;
@@ -46,7 +46,7 @@ typedef void(*func)(Persona*);
 
 void addNomina(Persona*,int);
 void delNomina(Persona*,int);
-void construir(Persona, Modelo*,int);
+void construir(Modelo*,Persona*,int);
 void printByDate(Modelo*,int,int);
 void printrh(int,int,Persona,Modelo*,int);
 int tampP(Persona*);
@@ -75,6 +75,10 @@ int main(){
                 delNomina(RH,zrh);
                 zrh--;
             break; 
+            case 3:
+                construir(modelos,RH,zmod);
+                zmod++;
+            break;
             default: printf("error\n"); break;
         }
     }
@@ -163,4 +167,65 @@ void delNomina(Persona* lista,int c)
     }
     
     printf("no encontre a quien correr");
+}
+
+void construir( Modelo* mls,Persona * ls,int c)
+{
+    printf("a quien quieres asignar este proyecto?(numero de nomina)\n");
+    int id=0;
+    scanf("%d",&id);
+    Persona*aux;
+    aux = ls;
+    if(c>M)
+    {
+        mls=(Modelo*)realloc(mls,(sizeof(Modelo)*M+10));
+    }
+int i=0;
+int x=0;
+    while((aux) !="\0")
+    {
+        aux++;
+        if((aux)->nomina ==id)
+        {
+            (mls+c)->constructor = aux;
+            (mls+c)->fecha = 2;
+            printf("torre 1, nave 2, edificio 3");
+            scanf("%d",&i);
+            switch(i)
+            {
+                case 1:
+
+                printf("numero de pisos");
+                scanf("%d",&i);
+                Torre* temp=(Torre*)malloc(sizeof(Torre));
+                temp->modales=(int*) malloc(i*sizeof(int));
+                temp->periodo =8;
+                temp->dSuperior=1;
+                temp->dInferior=1;
+                (((mls+c)->torre)) = temp;
+                break;
+                case 2:
+                 printf("numero de pisos");
+                scanf("%d",&i);
+                Nave* temp2=(Nave*)malloc(sizeof(Nave));
+                //temp2->modales=(int*) malloc(i*sizeof(int));
+                temp2->periodo =8;
+                temp2->techo = "aguas";
+                (((mls+c)->nave)) = temp2;
+                break;
+                
+                case 3:
+                printf("numero de pisos");
+                scanf("%d",&i);
+                Edificio* temp3=(Edificio*)malloc(sizeof(Edificio));
+                temp3->modales=(int*) malloc(i*sizeof(int));
+                temp3->periodo =8;
+                temp3->simetrico = true;
+                (((mls+c)->torre)) = temp;
+                break;
+            }
+            return;
+        }
+        
+    }
 }
