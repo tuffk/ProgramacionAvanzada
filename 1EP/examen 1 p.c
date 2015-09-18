@@ -28,8 +28,8 @@ typedef struct{
 typedef struct{
   int *modales;
   bool simetrico;
-  int periodo;
-  int pisos;
+  int *periodo;
+  int *pisos;
 }Edificio;
 
 typedef struct{
@@ -65,6 +65,8 @@ void printByDate(Modelo*,Persona*,int,int, int);
 void printrh(int,int,Modelo*,Persona*,int);
 int tampP(Persona*);
 int tamM(Modelo*);
+void del(Persona*,int,Modelo*,int);
+
 
 int main(){
     
@@ -113,9 +115,9 @@ int main(){
     if(!fork())
     {
         //hijo
-        printf("log in para poder ver tus modelos(osea tu numero de nomina)");
+        printf("log in para poder ver tus modelos(osea tu numero de nomina)\n");
             scanf("%d",&id);
-            printf("en que fehca deseas buscar? formato 19930317");
+            printf("en que fehca deseas buscar? formato 19930317\n");
             scanf("%d",&fec);
             printByDate(modelos,RH, fec,id, zmod);
         
@@ -239,29 +241,29 @@ int x=0;
         {
             (mls+c)->constructor = aux;
             (mls+c)->fecha = 2;
-            printf("torre 1, nave 2, edificio 3");
+            printf("torre 1, nave 2, edificio 3\n");
             scanf("%d",&i);
             switch(i)
             {
                 case 1:
 
-                printf("numero de tpisos");
+                printf("numero de tpisos\n");
                 scanf("%d",&i);
                 Torre* temp=(Torre*)malloc(sizeof(Torre));
                 temp->modales=(int*) malloc(i*sizeof(int));
                 temp->periodo =8;
-                temp->dSuperior=1;
-                temp->dInferior=1;
+                temp->dSuperior=(int*) malloc(i*sizeof(int));
+                temp->dInferior=(int*) malloc(i*sizeof(int));
                 
                 temp->pisos=i;
                 (((mls+c)->torre)) = temp;
                 (((mls+c)->type)) = 1;
                 break;
                 case 2:
-                 printf("numero de pisos");
+                 printf("numero de pisos\n");
                 scanf("%d",&i);
                 Nave* temp2=(Nave*)malloc(sizeof(Nave));
-                //temp2->modales=(int*) malloc(i*sizeof(int));
+                //temp2->modales=(int*) malloc(i*sizeof(int)); // es 1 asi q no es nesesario malloc
                 temp2->periodo =8;
                 temp2->techo = "aguas";
                
@@ -271,7 +273,7 @@ int x=0;
                 break;
                 
                 case 3:
-                printf("numero de episos");
+                printf("numero de episos\n");
                 scanf("%d",&i);
                 Edificio* temp3=(Edificio*)malloc(sizeof(Edificio));
                 temp3->modales=(int*) malloc(i*sizeof(int));
