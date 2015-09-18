@@ -63,6 +63,7 @@ void delNomina(Persona*,int);
 void construir(Modelo*,Persona*,int);
 void printByDate(Modelo*,Persona*,int,int, int);
 void printrh(int,int,Modelo*,Persona*,int);
+void edit(Persona*, int);
 int tampP(Persona*);
 int tamM(Modelo*);
 void del(Persona*,int,Modelo*,int);
@@ -112,6 +113,8 @@ int main(){
         }
     }
     
+    edit(RH,zrh);
+    
     if(!fork())
     {
         //hijo
@@ -128,13 +131,13 @@ int main(){
         //padre
         wait(0);//dado que solo tengo 1 consola para probarlo pues tiene que ser "paralelo" uno tras otro 
         
-        printf("log in para poder ver tus modelos(osea tu numero de nomina)");
+        printf("log in para poder ver tus modelos(osea tu numero de nomina)\n");
             scanf("%d",&id);
-            printf("en que fehca deseas buscar? formato 19930317");
+            printf("en que fehca deseas buscar? formato 19930317\n");
             scanf("%d",&fec);
             printByDate(modelos,RH, fec,id, zmod);
     }
-    
+//    del(RH,zrh,modelos,zmod);
     free(RH);
     free(modelos);
     return 0;
@@ -219,6 +222,25 @@ void delNomina(Persona* lista,int c)
     }
     
     printf("no encontre a quien correr");
+}
+
+void edit(Persona* ls, int c)
+{
+    Persona* aux=ls;
+    int id;
+    printf("dame tu id\n");
+    scanf("%d",&id);
+    int i =0;
+    while(i < c)
+    {
+        if((aux+i)->nomina == id)
+        {
+            (aux+id)->nombre = "new";
+            (aux+id)->nombre = "another";
+            (aux+id)->salario = 88;
+        }
+        i++;
+    }
 }
 
 void construir( Modelo* mls,Persona * ls,int c)
@@ -350,5 +372,34 @@ void printByDate(Modelo* mls,Persona* ls,int fechasss,int id, int c)
         i++;
        if(i<c)
         {aux++;} 
+    }
+}
+
+
+void del(Persona* ls,int tamls,Modelo* mls,int tamods)
+{
+    int i;
+    Persona*aux=ls;
+    Modelo* aux2=mls;
+    for(i=0;i<tamls;i++)
+    {
+        free(*((aux+i)->nombre));
+        free(*((aux+i)->apellido));
+        free(*((aux+i)->puesto));
+        printf("hola -%d-",i);
+    }
+    
+    for(i=0;i<tamods;i++)
+    {
+        free((aux2+i)->constructor);
+        if((aux2+i)->type ==1)
+            {
+               free((aux2+i)->torre);
+            }else if((aux2+i)->type ==2){
+                free((aux2+i)->nave);
+            }else if((aux2+i)->type ==3){
+                free((aux2+i)->edificio);
+            }
+            printf("adios -%d-",i);
     }
 }
