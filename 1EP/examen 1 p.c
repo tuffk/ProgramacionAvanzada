@@ -5,6 +5,16 @@
 #define M 10
 #define NULL (void*)0
 
+/*
+el formato de las fechas (para facilitar busquedas y comparaciones) es de enteros
+con el año luego el mes y luego el dia de la siguiente forma añoMesDia
+por ejemplo
+19930305 es 1993- 03 - 05 marzo 5 del 93
+20000109 9 enero del 2000
+favor de tomar nota de lo anterior
+*/
+
+
 typedef struct{
     int nomina;
     char* nombre;
@@ -62,6 +72,8 @@ int main(){
     Modelo* modelos = (Modelo*)malloc(M*sizeof(Modelo));
 
     int opcion=-1;
+    int id=0;
+    int fec=0;
     int zrh=0;
     int zmod=0;
     while(opcion !=0){
@@ -83,19 +95,31 @@ int main(){
                 construir(modelos,RH,zmod);
                 zmod++;
             break;
+            case 4:
+            printf("log in para poder ver tus modelos(osea tu numero de nomina)");
+            scanf("%d",&id);
+            printf("en que fehca deseas buscar? formato 19930317");
+            scanf("%d",&fec);
+            printByDate(modelos,RH, fec,id, zmod);
+            break;
             case 5:
                 printrh(1,3,modelos,RH,zmod);
             break;
             default: printf("error\n"); break;
         }
     }
+    
+    if(!fork())
+    {}
+    else
+    {}
+    
     free(RH);
     free(modelos);
     return 0;
 }
 
-int tampP(Persona*lista)
-{
+int tampP(Persona*lista){
     int t=0;
     Persona*aux;
     aux = lista;
@@ -283,16 +307,24 @@ void printrh(int a,int b,Modelo*mls,Persona* ls,int c)
 }
 
 
-void printByDate(Modelo* mls,Persona* ls,int fecha,int id, int c)
+void printByDate(Modelo* mls,Persona* ls,int fechasss,int id, int c)
 {
     Modelo* aux = mls;
     Persona* aux2 = ls;
     int i =0;
     while(i < c)
     {
-        
-        
-        
+        if(aux->fecha == fechasss && aux->constructor->nomina == id)
+        {
+            if(aux->type ==1)
+            {
+                printf("una torre de : %d pisos\n", aux->torre->pisos);
+            }else if(aux->type ==2){
+                printf("una torre de : 1 pisos\n");
+            }else if(aux->type ==3){
+                printf("una torre de : %d pisos\n", aux->edificio->pisos);
+            }
+        }
         i++;
        if(i<c)
         {aux++;} 
