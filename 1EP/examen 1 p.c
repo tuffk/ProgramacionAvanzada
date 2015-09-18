@@ -19,6 +19,7 @@ typedef struct{
   int *modales;
   bool simetrico;
   int periodo;
+  int pisos;
 }Edificio;
 
 typedef struct{
@@ -26,12 +27,14 @@ typedef struct{
     int periodo;
     int* dSuperior;
     int* dInferior;
+    int pisos;
 }Torre;
 
 typedef struct{
     int modales;
     int periodo;
     char* techo;
+    int pisos;
 }Nave;
 
 typedef struct{
@@ -40,6 +43,7 @@ typedef struct{
     Torre* torre;
     Nave* edificio;
     Persona * constructor;
+    int type;
 }Modelo;
 
 typedef void(*func)(Persona*);
@@ -47,8 +51,8 @@ typedef void(*func)(Persona*);
 void addNomina(Persona*,int);
 void delNomina(Persona*,int);
 void construir(Modelo*,Persona*,int);
-void printByDate(Modelo*,int,int);
-void printrh(int,int,Persona,Modelo*,int);
+void printByDate(Modelo*,Persona*,int,int, int);
+void printrh(int,int,Modelo*,Persona*,int);
 int tampP(Persona*);
 int tamM(Modelo*);
 
@@ -78,6 +82,9 @@ int main(){
             case 3:
                 construir(modelos,RH,zmod);
                 zmod++;
+            break;
+            case 5:
+                printrh(1,3,modelos,RH,zmod);
             break;
             default: printf("error\n"); break;
         }
@@ -202,7 +209,10 @@ int x=0;
                 temp->periodo =8;
                 temp->dSuperior=1;
                 temp->dInferior=1;
+                
+                temp->pisos=i;
                 (((mls+c)->torre)) = temp;
+                (((mls+c)->type)) = 1;
                 break;
                 case 2:
                  printf("numero de pisos");
@@ -211,7 +221,10 @@ int x=0;
                 //temp2->modales=(int*) malloc(i*sizeof(int));
                 temp2->periodo =8;
                 temp2->techo = "aguas";
+               
+                temp2->pisos=1;
                 (((mls+c)->nave)) = temp2;
+                (((mls+c)->type)) = 2;
                 break;
                 
                 case 3:
@@ -221,11 +234,67 @@ int x=0;
                 temp3->modales=(int*) malloc(i*sizeof(int));
                 temp3->periodo =8;
                 temp3->simetrico = true;
+          
+                temp3->pisos=i;
                 (((mls+c)->torre)) = temp;
+                (((mls+c)->type)) = 2;
                 break;
             }
             return;
         }
         
+    }
+}
+
+void printrh(int a,int b,Modelo*mls,Persona* ls,int c)
+{
+    Modelo*aux;
+    Persona* aux2;
+    int i =0;
+    int dia=a;
+    int tot=0;
+    aux2=ls;
+    aux=mls;
+    while(i < c)
+    {
+        if(aux->fecha <b && aux->fecha >a)
+        {
+            printf("trabajo realizado por: %s \n",(aux->constructor->nombre));
+            printf("su puesto es %s \n",(aux->constructor->puesto));
+            if(aux->type ==1)
+            {
+                printf("una torre de : %d pisos\n", aux->torre->pisos);
+            }else if(aux->type ==2){
+                printf("una torre de : 1 pisos\n");
+            }else if(aux->type ==3){
+                printf("una torre de : %d pisos\n", aux->edificio->pisos);
+            }
+            tot++;
+            
+        }
+        i++;
+        dia++;
+        printf("total de modelso contruidos el dia %d: %d \n",dia,tot);
+        if(i<c)
+        {aux++;}
+        
+    }
+    
+}
+
+
+void printByDate(Modelo* mls,Persona* ls,int fecha,int id, int c)
+{
+    Modelo* aux = mls;
+    Persona* aux2 = ls;
+    int i =0;
+    while(i < c)
+    {
+        
+        
+        
+        i++;
+       if(i<c)
+        {aux++;} 
     }
 }
