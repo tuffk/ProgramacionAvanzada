@@ -82,10 +82,10 @@ int main(){
         switch(opcion)
         {
             case 1:
-            printf("agregando");
+                //printf("agregando");
                 addNomina(RH,zrh);
                 zrh++;
-                printf("agregado");
+                //printf("agregado");
             break;
             case 2:
                 delNomina(RH,zrh);
@@ -104,15 +104,34 @@ int main(){
             break;
             case 5:
                 printrh(1,3,modelos,RH,zmod);
+                //printf("edificio %d pisps \n",(modelos->edificio->pisos));
             break;
             default: printf("error\n"); break;
         }
     }
     
     if(!fork())
-    {}
+    {
+        //hijo
+        printf("log in para poder ver tus modelos(osea tu numero de nomina)");
+            scanf("%d",&id);
+            printf("en que fehca deseas buscar? formato 19930317");
+            scanf("%d",&fec);
+            printByDate(modelos,RH, fec,id, zmod);
+        
+        exit(0);//matando al hijo
+    }
     else
-    {}
+    {
+        //padre
+        wait(0);//dado que solo tengo 1 consola para probarlo pues tiene que ser "paralelo" uno tras otro 
+        
+        printf("log in para poder ver tus modelos(osea tu numero de nomina)");
+            scanf("%d",&id);
+            printf("en que fehca deseas buscar? formato 19930317");
+            scanf("%d",&fec);
+            printByDate(modelos,RH, fec,id, zmod);
+    }
     
     free(RH);
     free(modelos);
@@ -226,7 +245,7 @@ int x=0;
             {
                 case 1:
 
-                printf("numero de pisos");
+                printf("numero de tpisos");
                 scanf("%d",&i);
                 Torre* temp=(Torre*)malloc(sizeof(Torre));
                 temp->modales=(int*) malloc(i*sizeof(int));
@@ -252,7 +271,7 @@ int x=0;
                 break;
                 
                 case 3:
-                printf("numero de pisos");
+                printf("numero de episos");
                 scanf("%d",&i);
                 Edificio* temp3=(Edificio*)malloc(sizeof(Edificio));
                 temp3->modales=(int*) malloc(i*sizeof(int));
@@ -260,8 +279,9 @@ int x=0;
                 temp3->simetrico = true;
           
                 temp3->pisos=i;
-                (((mls+c)->torre)) = temp;
-                (((mls+c)->type)) = 2;
+                (((mls+c)->edificio)) = temp3;
+                (((mls+c)->type)) = 3;
+                //printf("%d\n",(((mls+c)->edificio)->pisos));
                 break;
             }
             return;
@@ -289,9 +309,9 @@ void printrh(int a,int b,Modelo*mls,Persona* ls,int c)
             {
                 printf("una torre de : %d pisos\n", aux->torre->pisos);
             }else if(aux->type ==2){
-                printf("una torre de : 1 pisos\n");
+                printf("una nave de : 1 pisos\n");
             }else if(aux->type ==3){
-                printf("una torre de : %d pisos\n", aux->edificio->pisos);
+                printf("un edificio de : %d pisos\n", aux->edificio->pisos);
             }
             tot++;
             
