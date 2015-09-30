@@ -1,10 +1,3 @@
-//
-//  main.c
-//  sockets
-//
-//  Created by Vicente Cubells Nonell on 14/09/15.
-//  Copyright (c) 2015 Vicente Cubells Nonell. All rights reserved.
-//
 
 #include <stdbool.h>
 #include <stdio.h>
@@ -35,10 +28,10 @@ int main(int argc, const char * argv[]) {
     //servidor = socket(PF_UNIX, SOCK_STREAM, 0);
     
     // Enlace con el socket
-    direccion.sin_port = htons(TCP_PORT);
+    direccion.sin_port = htons(TCP_PORT);//eliminar esto si se usa UNIX
     direccion.sin_family = AF_INET;
     //direccion.sin_family = AF_UNIX;
-    inet_aton(argv[1], &direccion.sin_addr);
+    inet_aton(argv[1], &direccion.sin_addr);//eliminar esto si se usa UNIX
     
     bind(servidor, (struct sockaddr *) &direccion, sizeof(direccion));
     
