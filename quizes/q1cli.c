@@ -54,7 +54,7 @@ int main(int argc, const char * argv[]) {
         // Leer de teclado y escribir en socket
         while (/*leidos = read(fileno(stdin), &buffer, sizeof(buffer))*/1) {
             write(cliente, &buffer, leidos);
-            
+            total(leidos);
             //leidos = read(cliente, &buffer, sizeof(buffer));
             write(fileno(stdout), &buffer, leidos);
         }
