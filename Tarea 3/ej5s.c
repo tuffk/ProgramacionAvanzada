@@ -6,6 +6,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <string.h>
+#define suxname "sux"
 
 /*
 sugerencia para correrlo
@@ -27,17 +28,11 @@ int main(int argc, const char * argv[]) {
     
     int leidos, escritos;
     
-    if (argc != 2) {
-        printf("Error. Use: %s A.B.C.D \n", argv[0]);
-        exit(-1);
-    }
-
-    const char* const socket_name = argv[1];
     
     servidor = socket(PF_LOCAL, SOCK_STREAM, 0);
     
     direccion.sun_family = AF_LOCAL;
-    strcpy(direccion.sun_path,socket_name);
+    strcpy(direccion.sun_path,suxname);
     
     bind(servidor,&direccion, SUN_LEN(&direccion));
     

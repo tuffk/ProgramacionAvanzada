@@ -34,10 +34,6 @@ void print_status(long tgid) {
 }
 
 
-
-
-
-
 int main (int argc, const char * argv[])
 {
     pid_t pid;
