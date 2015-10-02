@@ -42,7 +42,7 @@ int main (int argc, const char * argv[])
 {
     pid_t pid;
     int i, c;
-    int timepo;
+    int timepo=0;
     
     DIR* proc = opendir("/proc");
     struct dirent* ent;
@@ -68,6 +68,13 @@ int main (int argc, const char * argv[])
         default:
             abort ();
     }
+    if(timepo<=0)
+    {
+        fprintf(stderr,"falta argumento de tiempo o no es mayor a 0");
+        abort();
+    }
+    
+    tiempo*=60;
     
     /* create new process */
     pid = fork ( );  
