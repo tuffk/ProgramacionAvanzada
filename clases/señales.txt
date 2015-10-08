@@ -1,0 +1,44 @@
+las señales son interrupciones 
+los manejadores de la señal son el codigo de las señales que se ejecutan cuando ocurre esa señal
+3 manejadores
+    ignorar
+    comportamiento predeterminado definido por el kernel
+    programado por el usuario
+no todas se peuden capturar y no todas se les puede poner el manejador que uno quiere
+EJ: sigkill esta reservada al sistema
+sigusr1 y sigusr2 son para el usuario
+los porcesos peuden generar señales pueden generar señales
+EJ: acceso ilegal a memoria. el compilador responde a la señal de segmentation fault
+los comandos kill mandan señales
+ctr l + c es sigint de interrumpir
+    manipulable
+
+el kernel se defiende de procesos que se apropian de recursos con el sigkill (kill -9)
+se peuden utilizar como mecanismo de ipc, pero no se recomienda
+las señales son anonimas
+un proceso nunca puede saber quien emitio la señal
+ej: un proceso padre le manda un aseñal a un hijo para que mepieze a procesar algo y al terminar el hijo responde ocn otra señal
+no se peudenmandar datos, y cualquier otro peude mandar la señal a los proceso y estos reaccionaran igual
+
+sigalarm se genera automaticamente cuando vence un temporizador
+    establecer un contador  y al llegar a 0 manda la señal
+    alarm 10 
+un proceso al recibir una señal ese proceso se detiene y atiende la señal
+    ej: un for esta suamndo recibe la señal y se detiene para atenderla, al terminar de atender la señal vuelve al for
+    
+que manejadores e pueden tener
+definidos:
+    sig_ign
+    ignorar
+    es decir no responde, no es buena idea, porque deja de responder el programa 
+default:
+    sig_dgl
+    lo que el kernel ya tiene definido
+lo que hace el usuario:
+    para que el usuario programe lo que va a pasar cuando llegue la señal
+
+el escribir un manejador en mi orograma sobre escribre el ocmportamiento predeterminado
+
+reciben un entero y regresan void
+estan en el 
+#include <signal.h>
