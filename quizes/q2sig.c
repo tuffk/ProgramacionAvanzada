@@ -30,7 +30,7 @@ int main()
     cz=0;
     segs=3;
     pid_t id;
-    void gestor_ctrlc(int sig)
+void gestor_ctrlc(int sig)
 {
     cc++;
     ymayuscula++;
