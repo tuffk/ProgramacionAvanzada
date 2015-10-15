@@ -40,6 +40,7 @@ int main(int argc, const char * argv[])
     FILE * file;
     int fd =3;
     char pathFile = "./datos";
+    system("rm -rf ./datos/*")
     alarm(3);
             while(grabar){
             sprintf(pathFile, "./datos", "a1" );
