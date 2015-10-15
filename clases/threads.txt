@@ -1,0 +1,40 @@
+hay hilos a nivel usuario y anivel kernel 
+los de kernel son mas eficiente
+los hilos son parte de un proceso 
+por lo que si un hilo tiene que pedir IO le quita el procesador a todo los hilos ya que se lo quita al proceso
+problemas ocn los cmabios de contexto
+
+a nivel usuario: ventaja cada proceso peude tener su propio clenadrizador indeéndiente a del sitema operativo 
+problemas cuando un hilo se bloque, fallos de pagina
+como hago que un hilo ceda el cpu 
+todo eso es responsabilidad del programador
+si no hay nada que involucre al kernel son mas rapidos
+
+
+modelo hibrido
+hay hilos de kernel que usando multiplexion crea varios hilos de proceso
+     ______
+----/----
+     \_______
+     
+hilos automaticos 
+se usan en funciones, por ejemplo paso de mensajes
+cuando se crea el proceso se crea el hilo, y al temrinar se destruey
+
+cada hilo ademas de compartir lo que en el proceso
+puede tener variables dentro de si, no es comun
+
+es mas facil que se comuniquen entre si
+la memoria ya es compartida, solo hay que escribir en la memoria compartida
+eso implica que una region de memoria en donde varios hilos quieren escribir y leer a la vez
+
+pthreads.h
+
+ahi esta la docuemntacion
+
+pthread_create(pthread_t *tid,*tatttr,apuntador a una funcion);
+void* (*start_routine)(void *), void arg
+                        un solo argumento
+
+siempre siempre uar pthread_exit();
+liberar recurso del hilo 
