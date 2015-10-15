@@ -22,14 +22,8 @@ int cz;
 int cc;
 int ymayuscula;
 int segs;
+pid_t id;
 
-
-int main()
-{
-    cc=0;
-    cz=0;
-    segs=3;
-    pid_t id;
 void gestor_ctrlc(int sig)
 {
     cc++;
@@ -55,6 +49,14 @@ void gestor_alarma(int sig)
     printf("duermo %d\n",segs);
     alarm(3);
 }
+
+int main()
+{
+    cc=0;
+    cz=0;
+    segs=3;
+    
+signal(SIGINT,SIG_IGN);
 
 signal(SIGUSR1, gestor_usr1);
 signal(SIGINT,gestor_ctrlc);

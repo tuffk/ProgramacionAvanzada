@@ -1,0 +1,43 @@
+para cambiar el manejador de una señal 
+
+recibe el umero de la señal
+estructura de lo que hara ahora 
+estructura de lo que hacia antes
+
+las estructurs tienen mas cosas
+
+si solo pongo el segundo parametr y el tercero en 0 establece el valor 
+para cuando no quieres recuperar el valor previo
+como usar signal();
+
+para solo recuperar el valor previo 
+pasa el valor 2 en 0 y el 3 la direccion ala estructura donde quieres recuperar
+
+las flags sirven para establecer diferentes funcionalidades en la funcion
+reset por ejemplo regresa la funcion a como era antes despues de su primer uso
+
+one shot lo opuesto a restart
+
+pause()  es para esperar a que el programa reciba cualquier señal
+
+raise(int sig) le manda una señal a el mismo proceso
+
+
+
+grupos de señales
+pone las señales que no se esten recibiendo en una cola de señales pendientes
+cuando desbloqueas las señales te deja analzarlas
+ignorar la señal es como procesarla, bloquearla es dejarla para al rato
+
+
+sigemptyset(sigset_t *set)
+...
+
+
+sigprocmask( how, nuevo grupo, viejo grupo);
+sig_block y sig_unblobk las osbrescrive
+sig_mask las agregar
+
+sigpending
+regresa un conjunto de las señales pendientes
+
