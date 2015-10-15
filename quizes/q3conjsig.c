@@ -18,13 +18,16 @@
 #define SIGALARM 14
 
 int grabar;
-
+void gestor(int sig)
+{
+    grabar =0;
+}
 int main(int argc, const char * argv[])
 {
     struct dirent* ent;
     sigset_t ninguna, todas;
     grabar=1;
-    
+    signal(SIGALARM,gestor);
     sigemptyset(&ninguna);
     sigfillset(&todas);
     
@@ -37,12 +40,14 @@ int main(int argc, const char * argv[])
     FILE * file;
     int fd =3;
     char pathFile = "./datos";
-    while(ent = readdir(proc)) {
-            
-            sprintf(pathFile, "%s\\my_log.txt", "datos" );
+    alarm(3);
+            while(grabar){
+            sprintf(pathFile, "./datos", "a1" );
             int filedescriptor = open(pathFile, O_RDWR | O_APPEND | O_CREAT);  
             write(filedescriptor,"x",(sizeof(char)));
+            
             }
+            
 sigprocmask(SIG_UNBLOCK, &todas, NULL);
     
         closedir(proc);
