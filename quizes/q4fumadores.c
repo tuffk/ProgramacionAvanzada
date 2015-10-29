@@ -96,7 +96,6 @@ void fumar2(void * arg2)
     }else{
         mm1=-1;
         mm2=-1;
-        
         coloca=1;
         pthread_mutex_unlock(&yaharadin);
         pthread_mutex_unlock(&tutzke);
