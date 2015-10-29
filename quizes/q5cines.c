@@ -5,8 +5,12 @@
 #include <unistd.h>
 
 #define SILLAS 20
-#define SALAS 5
-#define GUESTS 5
+#define SALAS 7
+#define movil 2
+#define web 2
+#define taquillas 3
+//#define GUESTS 5
+#define VERE 15
 
 int cine[SALAS][SILLAS];
 pthread_mutex_t mutex = PTHREAD_MUTEX_INITIALIZER;
@@ -18,12 +22,12 @@ pthread_cond_t produce_t = PTHREAD_COND_INITIALIZER;
 void compra(void* arg)
 {
     int sala,silla;
-    int cont =10;
+    int cont =VERE;
     
     while(cont>0)
     {
-        sala = rand()%5;
-        silla = rand()%20;
+        sala = rand()%SALAS;
+        silla = rand()%SILLAS;
         
         printf("soy %d, voy a la sala %d, y a la silla %d \n", (int)arg,sala,silla);
         
@@ -41,12 +45,13 @@ void compra(void* arg)
         pthread_mutex_unlock(&kuz);
         
     }
-    printf("vi 10 peliculas y me voy\n");
+    printf("vi %d peliculas y me voy\n",VERE);
 }
 
 
 int main()
 {
+    int GUESTS = taquillas+movil+web;
     srand((int)time(NULL));
     pthread_mutex_lock(&kuz);
     for(int i=0;i<SALAS;++i)
@@ -74,9 +79,6 @@ int main()
     for (aux = compradores; aux < (compradores+GUESTS); ++aux) {
         pthread_join(*aux, NULL);
     }
-    
-    
-    
     
     return 0;
 }
