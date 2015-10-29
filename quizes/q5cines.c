@@ -79,6 +79,7 @@ int main()
     for (aux = compradores; aux < (compradores+GUESTS); ++aux) {
         pthread_join(*aux, NULL);
     }
+    free(compradores);
     
     return 0;
 }
