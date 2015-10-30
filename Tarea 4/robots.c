@@ -47,7 +47,7 @@ int main(int argc, const char * argv[]) {
     pthread_join(control, NULL);
     
     free(comercios);
-    
+    system("rm disco");
     return 0;
 }
 
