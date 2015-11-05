@@ -1,0 +1,32 @@
+open mp
+directivas de precompilador
+permite paralelizar
+tecnicas de sincronizacion
+bloqueas y barreras
+separar codigo en secciones
+una instruccion multiples datos
+
+openmp 4.0 
+
+pragma OMP
+
+omp 4
+omp sections
+etc
+
+todas las variables son publicas por defecto
+
+las variables privadas deben ser la de la region critica
+
+privadas: son las variables que solo el hilo accesa y nadie mas interfiere
+
+publica es para todos los hilos; todos los hilos la sobreescrien
+
+EJ: la variable de un ciclo debe ser proivada porque no todos los ciclso van al mismo tiempo
+
+con un if le peudo decir en base a cierta ocndicion paralelisa o no, sin cambiar el codigo
+
+un inhibidor del paralelismo es la dependencia entre procesos
+
+COMPILAR
+gcc ARCHIVO -fopenmp
