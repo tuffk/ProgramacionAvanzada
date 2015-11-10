@@ -12,7 +12,7 @@ int main()
 #pragma omp parallel private(tid)
   {
     //tid=omp_get_thread_num();
-#pragma omp for private(i) reduction(+:suma) schedule(dynamic,100000)
+#pragma omp for private(i) reduction(+:suma) schedule(guided,100000)
     for(i=0;i<N;++i)
     {
 //#pragma omp atomic

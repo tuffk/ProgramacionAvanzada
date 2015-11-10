@@ -1,0 +1,52 @@
+los hilos ocmpraten las variables globales
+cuando un hilo quieres que tenga su propia copia de una varaible global
+TSD 
+no se usan operadores de asignacion ni con el de recuperacion de valores 
+primero hay que crearlas con una funcion, luego asignarles un valor, se peude recuperar 
+
+pthread_key_creat(variable, el destructor)
+pthread_key_t varaible
+
+el destructor es importante cuando se usna variables con memoria dinamica
+
+establecer
+pthread_setspecific(key, valor)
+pone un valor
+pthread_get_pesific(key)
+regresa el valor guardado
+
+Id de thread
+pthread_self()
+desde ADENTRO del hilo devuelve el ID del hilo 
+es un entero
+
+pthread_equal(tid1,tid2)
+devuelve si los hilos son iguales
+compara solo el numero, verifica si los IDS son el mismo hilo en ejecucion
+
+#include <sched.h>
+sched_yield();
+con esta funcion suelta el procesador voluntariamente
+
+
+
+para darle atrubutos
+inicializo la variable
+la modifico
+la paso en el pthread create 
+
+
+
+pthread_attr_init(&attr)
+
+
+SCOPE - proceso o sistema(usuario / kernel)
+detach (estado) - joinable o detachable
+direccion de la pila
+pila - el tamaño de la pila 1mb por default
+parametros de calendarizacion - default hereda del padre
+
+
+set stack size para cambiar su pila
+
+los hilos se peuden mandar señales

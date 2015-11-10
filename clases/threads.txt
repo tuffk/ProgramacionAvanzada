@@ -38,3 +38,9 @@ void* (*start_routine)(void *), void arg
 
 siempre siempre uar pthread_exit();
 liberar recurso del hilo 
+
+
+
+LOS MUTEX SE DEBEN BLOQUEAR Y DESBLOQUEAR EN EL MISMO ORDEN EN TODOS LSO HILOS
+
+LOS MUTEX SE DESLOQUEAN EN ORDEN INVERSO A COMO SE BLOQUEARON
