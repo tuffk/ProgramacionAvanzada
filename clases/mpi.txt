@@ -1,0 +1,72 @@
+send() y recive()
+sinconras: pro cada emisor hay un receptor
+a sincrona: el emisor madna y madna, y el receptro recibe. no hay bloqueo por parte del emisor o el receptor
+
+se peude utilizar un buffer, donde ambos acumulan paquetes para procesarlos
+
+operaciones bloqueantes: establence bloqueos, como barreras
+siguen bloqueando ahasta recibir notificacion
+
+las no bloqueantes se relacionan con las asincronas
+
+sincronizacion principalmente con barreras
+
+difucion: el proceso principal (id 0) manda la info a lso demas nodos
+  
+el nodo comun hace la reduccion
+
+allgather - todos a todos 
+
+se madnan el resultado parcial de una reduccion y todos los nodos obitienen el resultado final
+
+
+alltoall
+
+se madnan todo y luego se hacen las operaciones
+
+mpi es paralelismo explicito
+el programador debe decir que parte del codigo se puede paralelizar y cuales no
+
+comunicadores
+agrupacion de nodos en un cluster, todos lso nodos se comunican entre si de manera trasnparente
+
+inicia comunicador y verifica si se peuden comunicar, y ver si puede empezar el entorno mpi
+
+destruir el entorno liera todos los recursos del cluster
+
+se peude segmentar en grupos
+1s nodos a un grupo y otros a otros
+entre ocmunicadores aislados no se comunican
+
+se asignan numeros unicos apartir del 0 con incremento secuencial  hastale inf
+
+la funcion init recibe los mismos argumentos que el main
+
+funciones de envio y recepcion
+
+las funciones con I delante son asincronas
+las que tienen B usan buffer
+
+
+vagrant
+
+vagrant up
+vagrant ssh ELNOMBREDELNODO
+
+
+ssh-keygen -t rsa
+  llave publica y privada, en .ssh id_rsa y id_rsa.pub
+    copiar el archivo .pub a 
+  ssh-copy-id -i RUTAALPUB vagrant@IPDELDESTINO
+    esto ya funge
+    
+    
+compilar
+mpicc main.c -o NOMBRE
+ejecutar
+mpiexec -f nodes -n 6 ./NOMBRE
+mpiexec -hosts IP1,IP2 -n 6 ./NOMBRE
+siemrpe el master primero 
+.n es el numero d eprocesos 
+
+nodes es un archivo con las IPs de los nodos
