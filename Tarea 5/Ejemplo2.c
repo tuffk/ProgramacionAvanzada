@@ -17,6 +17,7 @@ int main()
   int sum=0;
   int i = 0;
   
+  printf("con private\n");
 #pragma omp target map(to:i)
 #pragma omp teams num_teams(2) thread_limit(4)
 #pragma omp parallel private(i)
@@ -26,7 +27,7 @@ int main()
     
   printf("\n\n\n");
   
-  
+  printf("con shared\n");
 int j=0;
 #pragma omp target map(to:j) 
 #pragma omp teams num_teams(2) thread_limit(4)
@@ -36,9 +37,10 @@ int j=0;
   j+=1;
   printf("soy: %d, j vale: %d\n",omp_get_thread_num(),j);
 }
-  
+  printf("\n\n\n");
+  printf("con first private\n");
   printf("i:%d, j: %d\n",i,j);
-    printf("\n\n\n");
+  
     
   #pragma omp target map(to:j)
 #pragma omp teams num_teams(2) thread_limit(4)
