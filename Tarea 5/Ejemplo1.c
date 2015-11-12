@@ -34,6 +34,7 @@ int main()
   printf("suma(con reduction y private): %d\n",sum);
   
   sum =0;
+  printf("\n\n\n");
 
   #pragma omp target map(to:total[:N])
 #pragma omp teams num_teams(2) thread_limit(4)
